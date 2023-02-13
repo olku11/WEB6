@@ -26,11 +26,10 @@ if not response:
     # обработка ошибочной ситуации
     pass
 
-a = response.json()
-finx, finy = function.coord(a)
-
-# Преобразуем ответ в json-объект
 json_response = response.json()
+finx, finy = function.coord(json_response)
+
+# Преобразуем отв
 # Получаем первый топоним из ответа геокодера.
 toponym = json_response["response"]["GeoObjectCollection"][
     "featureMember"][0]["GeoObject"]
