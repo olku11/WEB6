@@ -67,7 +67,7 @@ org_point = "{0},{1}".format(point[0], point[1])
 map_params = {
     "l": "map",
     # добавим точку, чтобы указать найденную аптеку
-    "pt": "~".join(["{0},pma".format(org_point), "{0},pmb".format(f'{toponym_longitude},{toponym_lattitude}')])
+    "pt": "~".join(["{0},pm2wtm".format(org_point), "{0},pm2rdm".format(f'{toponym_longitude},{toponym_lattitude}')])
 }
 
 map_api_server = "http://static-maps.yandex.ru/1.x/"
