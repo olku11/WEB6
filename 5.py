@@ -15,26 +15,27 @@ geocoder_api_server = "http://geocode-maps.yandex.ru/1.x/"
 
 geocoder_params = {
     "apikey": "40d1649f-0493-4b70-98ba-98533de7710b",
-    "geocode": toponym_to_find,
+    "geocode": "ул.Новаторов, д.36к.2",
     "format": "json"}
 
 response = requests.get(geocoder_api_server, params=geocoder_params)
 if not response:
     pass
-json_response = response.json()
-finx, finy = function.coord(json_response)
-toponym = json_response["response"]["GeoObjectCollection"][
-    "featureMember"][0]["GeoObject"]
-toponym_coodrinates = toponym["Point"]["pos"]
-geocoder_api_server = "http://geocode-maps.yandex.ru/1.x/"
-geocoder_params = {
-    "apikey": "40d1649f-0493-4b70-98ba-98533de7710b",
-    "geocode": ",".join([toponym_coodrinates.split(" ")]),
-    'kind': 'district',
-    'results': '1',
-    'format': 'json'
-}
+else:
+    json_response = response.json()
+    finx, finy = function.coord(json_response)
+    toponym = json_response["response"]["GeoObjectCollection"][
+        "featureMember"][0]["GeoObject"]
+    toponym_coodrinates = toponym["Point"]["pos"]
+    geocoder_api_server = "http://geocode-maps.yandex.ru/1.x/"
+    geocoder_params = {
+        "apikey": "40d1649f-0493-4b70-98ba-98533de7710b",
+        "geocode": ",".join(toponym_coodrinates.split(" ")),
+        'kind': 'district',
+        'results': '1',
+        'format': 'json'
+    }
 
-response = requests.get(geocoder_api_server, params=geocoder_params)
-print(response.json()["response"]["GeoObjectCollection"][
-    "featureMember"][0]["GeoObject"]['name'])
+    response = requests.get(geocoder_api_server, params=geocoder_params)
+    print(response.json()["response"]["GeoObjectCollection"][
+              "featureMember"][0]["GeoObject"]['name'])
