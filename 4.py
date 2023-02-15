@@ -18,7 +18,7 @@ geocoder_api_server = "http://geocode-maps.yandex.ru/1.x/"
 
 geocoder_params = {
     "apikey": "40d1649f-0493-4b70-98ba-98533de7710b",
-    "geocode": toponym_to_find,
+    "geocode": "Москва, ул. Ак. Королева, 12",
     "format": "json"}
 
 response = requests.get(geocoder_api_server, params=geocoder_params)
@@ -64,12 +64,12 @@ for i in range(10):
     point = organization["geometry"]["coordinates"]
     org_point = "{0},{1}".format(point[0], point[1])
     if working_time == '':
-        spis.append("{0},pm2rdm".format(org_point))
+        spis.append("{0},pm2grm".format(org_point))
     else:
         if 'круглосуточно' in working_time:
-            spis.append("{0},pm2wtm".format(org_point))
+            spis.append("{0},pm2gnm".format(org_point))
         else:
-            spis.append("{0},pm2wtm".format(org_point))
+            spis.append("{0},pm2blm".format(org_point))
 
 map_params = {
     "l": "map",
