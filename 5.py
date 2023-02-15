@@ -1,11 +1,6 @@
 import sys
-from io import BytesIO
-# Этот класс поможет нам сделать картинку из потока байт
 import requests
-from PIL import Image
 import function
-import disance
-import pygame
 
 toponym_to_find = " ".join(sys.argv[1:])
 
